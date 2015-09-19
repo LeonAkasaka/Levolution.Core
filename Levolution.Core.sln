@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Levolution.Core.Shared", "Levolution.Core.Shared\Levolution.Core.Shared.shproj", "{A7452384-6D53-42C0-BF7E-AEC20623C479}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levolution.Core.Pcl", "Levolution.Core.Pcl\Levolution.Core.Pcl.csproj", "{7892C2FA-ABC4-4000-A56A-257A256824E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levolution.Core.Net35", "Levolution.Core.Net35\Levolution.Core.Net35.csproj", "{5FA8CC9E-4658-4C6D-9A72-4FC579071465}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Levolution.Core.Shared\Levolution.Core.Shared.projitems*{7892c2fa-abc4-4000-a56a-257a256824e1}*SharedItemsImports = 4
+		Levolution.Core.Shared\Levolution.Core.Shared.projitems*{5fa8cc9e-4658-4c6d-9a72-4fc579071465}*SharedItemsImports = 4
+		Levolution.Core.Shared\Levolution.Core.Shared.projitems*{a7452384-6d53-42c0-bf7e-aec20623c479}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7892C2FA-ABC4-4000-A56A-257A256824E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7892C2FA-ABC4-4000-A56A-257A256824E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7892C2FA-ABC4-4000-A56A-257A256824E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7892C2FA-ABC4-4000-A56A-257A256824E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FA8CC9E-4658-4C6D-9A72-4FC579071465}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA8CC9E-4658-4C6D-9A72-4FC579071465}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA8CC9E-4658-4C6D-9A72-4FC579071465}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA8CC9E-4658-4C6D-9A72-4FC579071465}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
