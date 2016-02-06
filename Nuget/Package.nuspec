@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Package</id>
+    <version>1.0.0</version>
+    <authors>Leon Akasaka</authors>
+    <owners>Leon Akasaka</owners>
+    <licenseUrl>https://github.com/LeonAkasaka/Levolution.Core/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/LeonAkasaka/Levolution.Core</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Levolution Core.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>C#</tags>
+  </metadata>
+  <files>
+    <file src="..\Levolution.Core.Net35\bin\Release\*.*" target="lib\net20" />
+    <file src="..\Levolution.Core.Pcl\bin\Release\*.*" target="lib\net40" />
+  </files>
+</package>

@@ -4,7 +4,12 @@ using System.Text;
 
 namespace Levolution.Core
 {
-    class Class1
+    public class Class1
     {
+#if Net35
+        public string Message => ".Net Framework 3.5";
+#else
+        public string Message => ".Net Framework Pcl";
+#endif
     }
 }
