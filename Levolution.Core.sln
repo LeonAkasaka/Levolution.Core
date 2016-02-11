@@ -9,11 +9,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levolution.Core.Pcl", "Levo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levolution.Core.Net35", "Levolution.Core.Net35\Levolution.Core.Net35.csproj", "{5FA8CC9E-4658-4C6D-9A72-4FC579071465}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levolution.Core.Net35.UnitTest", "Levolution.Core.Net35.UnitTest\Levolution.Core.Net35.UnitTest.csproj", "{40E9E9DD-D103-4DA8-AFCD-2FF6D5519847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Levolution.Core.Pcl.UnitTest", "Levolution.Core.Pcl.UnitTest\Levolution.Core.Pcl.UnitTest.csproj", "{57790FCA-ABA2-41ED-B769-95C67B762658}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Levolution.Core.UnitTest.Shared", "Levolution.Core.UnitTest.Shared\Levolution.Core.UnitTest.Shared.shproj", "{B66B1438-232C-4C2F-BC1C-A1987E269E3A}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Levolution.Core.UnitTest.Shared\Levolution.Core.UnitTest.Shared.projitems*{40e9e9dd-d103-4da8-afcd-2ff6d5519847}*SharedItemsImports = 4
 		Levolution.Core.Shared\Levolution.Core.Shared.projitems*{7892c2fa-abc4-4000-a56a-257a256824e1}*SharedItemsImports = 4
+		Levolution.Core.UnitTest.Shared\Levolution.Core.UnitTest.Shared.projitems*{b66b1438-232c-4c2f-bc1c-a1987e269e3a}*SharedItemsImports = 13
 		Levolution.Core.Shared\Levolution.Core.Shared.projitems*{5fa8cc9e-4658-4c6d-9a72-4fc579071465}*SharedItemsImports = 4
 		Levolution.Core.Shared\Levolution.Core.Shared.projitems*{a7452384-6d53-42c0-bf7e-aec20623c479}*SharedItemsImports = 13
+		Levolution.Core.UnitTest.Shared\Levolution.Core.UnitTest.Shared.projitems*{57790fca-aba2-41ed-b769-95c67b762658}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +37,14 @@ Global
 		{5FA8CC9E-4658-4C6D-9A72-4FC579071465}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FA8CC9E-4658-4C6D-9A72-4FC579071465}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FA8CC9E-4658-4C6D-9A72-4FC579071465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40E9E9DD-D103-4DA8-AFCD-2FF6D5519847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40E9E9DD-D103-4DA8-AFCD-2FF6D5519847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40E9E9DD-D103-4DA8-AFCD-2FF6D5519847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40E9E9DD-D103-4DA8-AFCD-2FF6D5519847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57790FCA-ABA2-41ED-B769-95C67B762658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57790FCA-ABA2-41ED-B769-95C67B762658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57790FCA-ABA2-41ED-B769-95C67B762658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57790FCA-ABA2-41ED-B769-95C67B762658}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
