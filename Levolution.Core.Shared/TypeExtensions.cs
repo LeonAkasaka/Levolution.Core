@@ -9,16 +9,8 @@ namespace Levolution.Core
     /// <summary>
     /// 
     /// </summary>
-    public static class TypeExtensions
+    public static partial class TypeExtensions
     {
-#if !Net35
-        private static TypeInfo EnumerableTypeInfo { get; } = typeof(IEnumerable).GetTypeInfo();
-        private static TypeInfo GenericEnumerableTypeInfo { get; } = typeof(IEnumerable<>).GetTypeInfo();
-        private static TypeInfo NullableTypeInfo { get; } = typeof(Nullable<>).GetTypeInfo();
-#endif
-
-        #region IsCollection
-
         /// <summary>
         /// 
         /// </summary>
@@ -29,19 +21,7 @@ namespace Levolution.Core
             => Types.Enumerable.IsAssignableFrom(type);
 #else
             => type.GetTypeInfo().IsCollection();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        public static bool IsCollection(this TypeInfo info)
-            => EnumerableTypeInfo.IsAssignableFrom(info);
 #endif
-
-        #endregion
-
-        #region GetCellioctionType
 
         /// <summary>
         /// 
@@ -63,29 +43,7 @@ namespace Levolution.Core
         }
 #else
             => type.GetTypeInfo().GetCollectionType();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        public static Type GetCollectionType(this TypeInfo info)
-        {
-            if (info == EnumerableTypeInfo) { return Types.Enumerable; }
-            if (info == GenericEnumerableTypeInfo) { return Types.GenericEnumerable; }
-            if (info.IsGenericType && info.GetGenericTypeDefinition() == Types.GenericEnumerable) { return info.AsType(); }
-
-            return info.IsCollection() ? info.GetAllImplementedInterfaces()
-                    .Where(x => x.GetTypeInfo().IsGenericType)
-                    .FirstOrDefault(x => x.GetGenericTypeDefinition() == Types.GenericEnumerable) // return IEnumerable<T>
-                    ?? Types.Enumerable // return IEnumerable
-                : null;
-        }
 #endif
-
-        #endregion
-
-        #region GetCollectionElementType
 
         /// <summary>
         /// 
@@ -104,26 +62,7 @@ namespace Levolution.Core
         }
 #else
             => type.GetTypeInfo().GetCollectionElementType();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        public static Type GetCollectionElementType(this TypeInfo info)
-        {
-            if (info != EnumerableTypeInfo && info != GenericEnumerableTypeInfo && !(info.IsGenericType && info.GetGenericTypeDefinition() == Types.GenericEnumerable))
-            {
-                return null;
-            }
-
-            return info.GenericTypeArguments.Any() ? info.GenericTypeArguments[0] : typeof(object);
-        }
 #endif
-
-#endregion
-
-        #region IsNullable
 
         /// <summary>
         /// 
@@ -135,19 +74,7 @@ namespace Levolution.Core
             => type.IsGenericType && type.GetGenericTypeDefinition() == Types.Nullable;
 #else
             => type.GetTypeInfo().IsNullable();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        public static bool IsNullable(this TypeInfo info)
-            => info.IsGenericType && info.GetGenericTypeDefinition() == Types.Nullable;
 #endif
-
-        #endregion
-
-        #region IsPureType
 
         /// <summary>
         /// 
@@ -159,19 +86,7 @@ namespace Levolution.Core
             => !type.IsNullable() && !type.IsGenericType && !type.IsArray;
 #else
             => type.GetTypeInfo().IsPureType();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        public static bool IsPureType(this TypeInfo info)
-            => !info.IsNullable() && !info.IsGenericType && !info.IsArray;
 #endif
-
-        #endregion
-
-        #region IsInteger
 
         /// <summary>
         /// 
@@ -179,23 +94,7 @@ namespace Levolution.Core
         /// <param name="type"></param>
         /// <returns></returns>
         public static bool IsInteger(this Type type)
-#if Net35
-         => Types.Integers.Contains(type);
-#else
-         => Types.Integers.Contains(type);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        public static bool IsInteger(this TypeInfo info)
-            => Types.Integers.Select(x => x.GetTypeInfo()).Contains(info);
-#endif
-
-        #endregion
-
-        #region IsNumber
+            => Types.Integers.Contains(type);
 
         /// <summary>
         /// 
@@ -203,39 +102,6 @@ namespace Levolution.Core
         /// <param name="type"></param>
         /// <returns></returns>
         public static bool IsNumber(this Type type)
-#if Net35
-         => Types.Numbers.Contains(type);
-#else
-         => Types.Numbers.Contains(type);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        public static bool IsNumber(this TypeInfo info)
-            => Types.Numbers.Select(x => x.GetTypeInfo()).Contains(info);
-#endif
-
-        #endregion
-
-#if !Net35
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static IEnumerable<Type> GetAllImplementedInterfaces(this Type type)
-            => type.GetTypeInfo().GetAllImplementedInterfaces();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <returns></returns>
-        public static IEnumerable<Type> GetAllImplementedInterfaces(this TypeInfo info)
-            => info.ImplementedInterfaces.Concat(info.BaseType != null ? info.BaseType.GetTypeInfo().GetAllImplementedInterfaces() : Enumerable.Empty<Type>()); 
-
-#endif
+            => Types.Numbers.Contains(type);
     }
 }
