@@ -84,6 +84,54 @@ namespace Levolution.Core.Pcl.UnitTest
             Assert.IsFalse(typeof(Action<int>).IsPureType());
         }
 
+
+        [TestMethod]
+        public void IsIntegerTest()
+        {
+            Assert.IsTrue(typeof(byte).IsInteger());
+            Assert.IsTrue(typeof(sbyte).IsInteger());
+            Assert.IsTrue(typeof(short).IsInteger());
+            Assert.IsTrue(typeof(ushort).IsInteger());
+            Assert.IsTrue(typeof(int).IsInteger());
+            Assert.IsTrue(typeof(uint).IsInteger());
+            Assert.IsTrue(typeof(long).IsInteger());
+            Assert.IsTrue(typeof(ulong).IsInteger());
+
+            Assert.IsFalse(typeof(float).IsInteger());
+            Assert.IsFalse(typeof(double).IsInteger());
+            Assert.IsFalse(typeof(decimal).IsInteger());
+            Assert.IsFalse(typeof(bool).IsInteger());
+            Assert.IsFalse(typeof(char).IsInteger());
+            Assert.IsFalse(typeof(string).IsInteger());
+            Assert.IsFalse(typeof(object).IsInteger());
+            Assert.IsFalse(typeof(int?).IsInteger());
+            Assert.IsFalse(typeof(int[]).IsInteger());
+        }
+
+        [TestMethod]
+        public void IsNumberTest()
+        {
+            Assert.IsTrue(typeof(byte).IsNumber());
+            Assert.IsTrue(typeof(sbyte).IsNumber());
+            Assert.IsTrue(typeof(short).IsNumber());
+            Assert.IsTrue(typeof(ushort).IsNumber());
+            Assert.IsTrue(typeof(int).IsNumber());
+            Assert.IsTrue(typeof(uint).IsNumber());
+            Assert.IsTrue(typeof(long).IsNumber());
+            Assert.IsTrue(typeof(ulong).IsNumber());
+
+            Assert.IsTrue(typeof(float).IsNumber());
+            Assert.IsTrue(typeof(double).IsNumber());
+            Assert.IsTrue(typeof(decimal).IsNumber());
+
+            Assert.IsFalse(typeof(bool).IsNumber());
+            Assert.IsFalse(typeof(char).IsNumber());
+            Assert.IsFalse(typeof(string).IsNumber());
+            Assert.IsFalse(typeof(object).IsNumber());
+            Assert.IsFalse(typeof(int?).IsNumber());
+            Assert.IsFalse(typeof(int[]).IsNumber());
+        }
+
 #if !Net35
 
         interface IA { }

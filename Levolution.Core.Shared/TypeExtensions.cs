@@ -6,6 +6,9 @@ using System.Reflection;
 
 namespace Levolution.Core
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TypeExtensions
     {
 #if !Net35
@@ -39,6 +42,12 @@ namespace Levolution.Core
         #endregion
 
         #region GetCellioctionType
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static Type GetCollectionType(this Type type)
 #if Net35
         {
@@ -116,6 +125,11 @@ namespace Levolution.Core
 
         #region IsNullable
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static bool IsNullable(this Type type)
 #if Net35
             => type.IsGenericType && type.GetGenericTypeDefinition() == Types.Nullable;
@@ -164,7 +178,7 @@ namespace Levolution.Core
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static bool IsInteger(Type type)
+        public static bool IsInteger(this Type type)
 #if Net35
          => Types.Integers.Contains(type);
 #else
@@ -175,8 +189,32 @@ namespace Levolution.Core
         /// </summary>
         /// <param name="info"></param>
         /// <returns></returns>
-        public static bool IsInteger(TypeInfo info)
+        public static bool IsInteger(this TypeInfo info)
             => Types.Integers.Select(x => x.GetTypeInfo()).Contains(info);
+#endif
+
+        #endregion
+
+        #region IsNumber
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsNumber(this Type type)
+#if Net35
+         => Types.Numbers.Contains(type);
+#else
+         => Types.Numbers.Contains(type);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public static bool IsNumber(this TypeInfo info)
+            => Types.Numbers.Select(x => x.GetTypeInfo()).Contains(info);
 #endif
 
         #endregion
