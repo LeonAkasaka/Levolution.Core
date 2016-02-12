@@ -80,7 +80,7 @@ namespace Levolution.Core
 
         #endregion
 
-        #region GetElementType
+        #region GetCollectionElementType
 
         /// <summary>
         /// 
