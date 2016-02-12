@@ -118,7 +118,7 @@ namespace Levolution.Core
 
 #endregion
 
-#region IsNullable
+        #region IsNullable
 
         public static bool IsNullable(this Type type)
 #if Net35
@@ -135,9 +135,9 @@ namespace Levolution.Core
             => info.IsGenericType && info.GetGenericTypeDefinition() == NullableType;
 #endif
 
-#endregion
+        #endregion
 
-#region IsPureType
+        #region IsPureType
 
         /// <summary>
         /// 
@@ -159,7 +159,7 @@ namespace Levolution.Core
             => !info.IsNullable() && !info.IsGenericType && !info.IsArray;
 #endif
 
-#endregion
+        #endregion
 
 #if !Net35
         /// <summary>
