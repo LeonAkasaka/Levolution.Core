@@ -24,7 +24,6 @@ namespace Levolution.Core.Pcl.UnitTest
             Assert.IsFalse(typeof(object).IsCollection());
             Assert.IsFalse(typeof(Action).IsCollection());
             Assert.IsFalse(typeof(Action<>).IsCollection());
-
         }
 
         [TestMethod]
@@ -66,6 +65,23 @@ namespace Levolution.Core.Pcl.UnitTest
             Assert.IsFalse(typeof(string).IsNullable());
             Assert.IsFalse(typeof(object).IsNullable());
             Assert.IsFalse(typeof(IEnumerable).IsNullable());
+        }
+
+        [TestMethod]
+        public void IsPureTypeTest()
+        {
+            Assert.IsTrue(typeof(int).IsPureType());
+            Assert.IsTrue(typeof(DateTime).IsPureType());
+            Assert.IsTrue(typeof(string).IsPureType());
+            Assert.IsTrue(typeof(object).IsPureType());
+            Assert.IsTrue(typeof(IEnumerable).IsPureType());
+            Assert.IsTrue(typeof(Action).IsPureType());
+
+            Assert.IsFalse(typeof(int?).IsPureType());
+            Assert.IsFalse(typeof(int[]).IsPureType());
+            Assert.IsFalse(typeof(IEnumerable<>).IsPureType());
+            Assert.IsFalse(typeof(IEnumerable<int>).IsPureType());
+            Assert.IsFalse(typeof(Action<int>).IsPureType());
         }
 
 #if !Net35
