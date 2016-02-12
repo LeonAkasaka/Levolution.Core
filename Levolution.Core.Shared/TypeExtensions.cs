@@ -8,10 +8,6 @@ namespace Levolution.Core
 {
     public static class TypeExtensions
     {
-        private static Type EnumerableType { get; } = typeof(IEnumerable);
-        private static Type GenericEnumerableType { get; } = typeof(IEnumerable<>);
-        private static Type NullableType { get; } = typeof(Nullable<>);
-
 #if !Net35
         private static TypeInfo EnumerableTypeInfo { get; } = typeof(IEnumerable).GetTypeInfo();
         private static TypeInfo GenericEnumerableTypeInfo { get; } = typeof(IEnumerable<>).GetTypeInfo();
@@ -27,7 +23,7 @@ namespace Levolution.Core
         /// <returns></returns>
         public static bool IsCollection(this Type type)
 #if Net35
-            => EnumerableType.IsAssignableFrom(type);
+            => Types.Enumerable.IsAssignableFrom(type);
 #else
             => type.GetTypeInfo().IsCollection();
 
@@ -46,14 +42,14 @@ namespace Levolution.Core
         public static Type GetCollectionType(this Type type)
 #if Net35
         {
-            if (type == EnumerableType) { return EnumerableType; }
-            if (type == GenericEnumerableType) { return GenericEnumerableType; }
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == GenericEnumerableType) { return type; }
+            if (type == Types.Enumerable) { return Types.Enumerable; }
+            if (type == Types.GenericEnumerable) { return Types.GenericEnumerable; }
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == Types.GenericEnumerable) { return type; }
 
             return type.IsCollection() ? type.GetInterfaces()
                     .Where(x => x.IsGenericType)
-                    .FirstOrDefault(x => x.GetGenericTypeDefinition() == GenericEnumerableType) // return IEnumerable<T>
-                    ?? EnumerableType // return IEnumerable
+                    .FirstOrDefault(x => x.GetGenericTypeDefinition() == Types.GenericEnumerable) // return IEnumerable<T>
+                    ?? Types.Enumerable // return IEnumerable
                 : null;
         }
 #else
@@ -66,14 +62,14 @@ namespace Levolution.Core
         /// <returns></returns>
         public static Type GetCollectionType(this TypeInfo info)
         {
-            if (info == EnumerableTypeInfo) { return EnumerableType; }
-            if (info == GenericEnumerableTypeInfo) { return GenericEnumerableType; }
-            if (info.IsGenericType && info.GetGenericTypeDefinition() == GenericEnumerableType) { return info.AsType(); }
+            if (info == EnumerableTypeInfo) { return Types.Enumerable; }
+            if (info == GenericEnumerableTypeInfo) { return Types.GenericEnumerable; }
+            if (info.IsGenericType && info.GetGenericTypeDefinition() == Types.GenericEnumerable) { return info.AsType(); }
 
             return info.IsCollection() ? info.GetAllImplementedInterfaces()
                     .Where(x => x.GetTypeInfo().IsGenericType)
-                    .FirstOrDefault(x => x.GetGenericTypeDefinition() == GenericEnumerableType) // return IEnumerable<T>
-                    ?? EnumerableType // return IEnumerable
+                    .FirstOrDefault(x => x.GetGenericTypeDefinition() == Types.GenericEnumerable) // return IEnumerable<T>
+                    ?? Types.Enumerable // return IEnumerable
                 : null;
         }
 #endif
@@ -90,7 +86,7 @@ namespace Levolution.Core
         public static Type GetCollectionElementType(this Type type)
 #if Net35
         {
-            if (type != EnumerableType && type != GenericEnumerableType && !(type.IsGenericType && type.GetGenericTypeDefinition() == GenericEnumerableType))
+            if (type != Types.Enumerable && type != Types.GenericEnumerable && !(type.IsGenericType && type.GetGenericTypeDefinition() == Types.GenericEnumerable))
             {
                 return null;
             }
@@ -107,7 +103,7 @@ namespace Levolution.Core
         /// <returns></returns>
         public static Type GetCollectionElementType(this TypeInfo info)
         {
-            if (info != EnumerableTypeInfo && info != GenericEnumerableTypeInfo && !(info.IsGenericType && info.GetGenericTypeDefinition() == GenericEnumerableType))
+            if (info != EnumerableTypeInfo && info != GenericEnumerableTypeInfo && !(info.IsGenericType && info.GetGenericTypeDefinition() == Types.GenericEnumerable))
             {
                 return null;
             }
@@ -122,7 +118,7 @@ namespace Levolution.Core
 
         public static bool IsNullable(this Type type)
 #if Net35
-            => type.IsGenericType && type.GetGenericTypeDefinition() == NullableType;
+            => type.IsGenericType && type.GetGenericTypeDefinition() == Types.Nullable;
 #else
             => type.GetTypeInfo().IsNullable();
 
@@ -132,7 +128,7 @@ namespace Levolution.Core
         /// <param name="info"></param>
         /// <returns></returns>
         public static bool IsNullable(this TypeInfo info)
-            => info.IsGenericType && info.GetGenericTypeDefinition() == NullableType;
+            => info.IsGenericType && info.GetGenericTypeDefinition() == Types.Nullable;
 #endif
 
         #endregion
@@ -157,6 +153,30 @@ namespace Levolution.Core
         /// <returns></returns>
         public static bool IsPureType(this TypeInfo info)
             => !info.IsNullable() && !info.IsGenericType && !info.IsArray;
+#endif
+
+        #endregion
+
+        #region IsInteger
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsInteger(Type type)
+#if Net35
+         => Types.Integers.Contains(type);
+#else
+         => Types.Integers.Contains(type);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public static bool IsInteger(TypeInfo info)
+            => Types.Integers.Select(x => x.GetTypeInfo()).Contains(info);
 #endif
 
         #endregion
