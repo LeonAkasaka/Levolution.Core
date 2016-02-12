@@ -55,6 +55,19 @@ namespace Levolution.Core.Pcl.UnitTest
 
         }
 
+        [TestMethod]
+        public void IsNullableTest()
+        {
+            Assert.IsTrue(typeof(bool?).IsNullable());
+            Assert.IsTrue(typeof(int?).IsNullable());
+            Assert.IsTrue(typeof(DateTime?).IsNullable());
+
+            Assert.IsFalse(typeof(int).IsNullable());
+            Assert.IsFalse(typeof(string).IsNullable());
+            Assert.IsFalse(typeof(object).IsNullable());
+            Assert.IsFalse(typeof(IEnumerable).IsNullable());
+        }
+
 #if !Net35
 
         interface IA { }
