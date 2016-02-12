@@ -3,8 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using Levolution.Core.Types;
 
-namespace Levolution.Core.Pcl.UnitTest
+namespace Levolution.Core.UnitTest
 {
     [TestClass]
     public class TypeExtensionsTests

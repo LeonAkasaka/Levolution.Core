@@ -11,7 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)EnumerableExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RandomExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TypeExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Types.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\TypeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Types\Types.cs" />
   </ItemGroup>
 </Project>
