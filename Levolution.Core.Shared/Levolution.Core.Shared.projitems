@@ -9,6 +9,7 @@
     <Import_RootNamespace>Levolution.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Component\IUpdatable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumerableExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RandomExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Types\TypeExtensions.cs" />
