@@ -16,6 +16,24 @@ namespace Levolution.Core.Types
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
+        public static string GetNameWithoutArity(this Type type)
+#if Net35
+            => type.IsGenericType ? GetNameWithoutArity(type.Name) : type.Name;
+#else
+            => type.GetTypeInfo().GetNameWithoutArity();
+#endif
+
+        private static string GetNameWithoutArity(string name)
+        {
+            var len = name.LastIndexOf("`");
+            return len > 0 ? name.Substring(0, len) : name;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public static bool IsCollection(this Type type)
 #if Net35
             => Types.Enumerable.IsAssignableFrom(type);

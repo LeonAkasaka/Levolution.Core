@@ -7,9 +7,34 @@ using Levolution.Core.Types;
 
 namespace Levolution.Core.UnitTest
 {
+    class A<T>
+    {
+        public class B { }
+        public class C<U, V>
+        {
+            public class D<W> { }
+        }
+    }
+
+    public class X
+    {
+        public class Y<T> {}
+    }
+
     [TestClass]
     public class TypeExtensionsTests
     {
+        [TestMethod]
+        public void GetNameWithoutArityTest()
+        {
+            Assert.AreEqual("A", typeof(A<>).GetNameWithoutArity());
+            Assert.AreEqual("B", typeof(A<>.B).GetNameWithoutArity());
+            Assert.AreEqual("C", typeof(A<>.C<,>).GetNameWithoutArity());
+            Assert.AreEqual("D", typeof(A<>.C<,>.D<>).GetNameWithoutArity());
+            Assert.AreEqual("X", typeof(X).GetNameWithoutArity());
+            Assert.AreEqual("Y", typeof(X.Y<>).GetNameWithoutArity());
+        }
+
         [TestMethod]
         public void IsCollectionTest()
         {

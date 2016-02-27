@@ -11,7 +11,15 @@ namespace Levolution.Core.Types
         private static TypeInfo EnumerableTypeInfo { get; } = typeof(IEnumerable).GetTypeInfo();
         private static TypeInfo GenericEnumerableTypeInfo { get; } = typeof(IEnumerable<>).GetTypeInfo();
         private static TypeInfo NullableTypeInfo { get; } = typeof(Nullable<>).GetTypeInfo();
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public static string GetNameWithoutArity(this TypeInfo info)
+            => info.IsGenericType ? GetNameWithoutArity(info.Name) : info.Name;
+
         /// <summary>
         /// 
         /// </summary>
