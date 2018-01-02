@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Levolution.Core</id>
-    <version>0.0.1.6</version>
+    <version>0.0.2.0</version>
     <authors>Leon Akasaka</authors>
     <owners>Leon Akasaka</owners>
     <licenseUrl>https://github.com/LeonAkasaka/Levolution.Core/blob/master/LICENSE</licenseUrl>
@@ -14,7 +14,7 @@
     <tags>Levolution</tags>
   </metadata>
   <files>
-    <file src="..\Levolution.Core.Net35\bin\Release\*.*" target="lib\net20" />
-    <file src="..\Levolution.Core.Pcl\bin\Release\*.*" target="lib\portable-net45+wp80+win8+wpa81+dnxcore50" />
+    <file src="..\Levolution.Core\bin\Release\net46\*.*" target="lib\net46" />
+    <file src="..\Levolution.Core\bin\Release\netstandard2.0\*.*" target="lib\netstandard2.0" />
   </files>
 </package>
