@@ -18,7 +18,7 @@ namespace Levolution.Core.UnitTest
 
     public class X
     {
-        public class Y<T> {}
+        public class Y<T> { }
     }
 
     [TestClass]
@@ -55,28 +55,28 @@ namespace Levolution.Core.UnitTest
         [TestMethod]
         public void GetCollectionTypeTest()
         {
-            Assert.AreEqual(typeof(IEnumerable<int>), typeof(int[]).GetCollectionType());
-            Assert.AreEqual(typeof(IEnumerable<char>), typeof(string).GetCollectionType());
-            Assert.AreEqual(typeof(IEnumerable), typeof(IEnumerable).GetCollectionType());
-            Assert.AreEqual(typeof(IEnumerable<>), typeof(IEnumerable<>).GetCollectionType());
-            Assert.AreEqual(typeof(IEnumerable<int>), typeof(IEnumerable<int>).GetCollectionType());
-            Assert.AreEqual(typeof(IEnumerable), typeof(ArrayList).GetCollectionType());
-            Assert.AreEqual(typeof(IEnumerable<int>), typeof(List<int>).GetCollectionType());
+            Assert.AreEqual(typeof(IEnumerable<int>), typeof(int[]).ToEnumerable());
+            Assert.AreEqual(typeof(IEnumerable<char>), typeof(string).ToEnumerable());
+            Assert.AreEqual(typeof(IEnumerable), typeof(IEnumerable).ToEnumerable());
+            Assert.AreEqual(typeof(IEnumerable<>), typeof(IEnumerable<>).ToEnumerable());
+            Assert.AreEqual(typeof(IEnumerable<int>), typeof(IEnumerable<int>).ToEnumerable());
+            Assert.AreEqual(typeof(IEnumerable), typeof(ArrayList).ToEnumerable());
+            Assert.AreEqual(typeof(IEnumerable<int>), typeof(List<int>).ToEnumerable());
 
         }
 
         [TestMethod]
         public void GetCollectionElementTypeTest()
         {
-            Assert.AreEqual(typeof(int), typeof(int[]).GetCollectionType().GetCollectionElementType());
-            Assert.AreEqual(typeof(int?), typeof(int?[]).GetCollectionType().GetCollectionElementType());
-            Assert.AreEqual(typeof(char), typeof(string).GetCollectionType().GetCollectionElementType());
-            Assert.AreEqual(typeof(string), typeof(string[]).GetCollectionType().GetCollectionElementType());
-            Assert.AreEqual(typeof(object), typeof(IEnumerable).GetCollectionType().GetCollectionElementType());
-            Assert.AreEqual(typeof(int), typeof(IEnumerable<int>).GetCollectionType().GetCollectionElementType());
-            Assert.AreEqual(typeof(int?), typeof(IEnumerable<int?>).GetCollectionType().GetCollectionElementType());
+            Assert.AreEqual(typeof(int), TypeExtensions.GetElementType(typeof(int[]).ToEnumerable()));
+            Assert.AreEqual(typeof(int?), TypeExtensions.GetElementType(typeof(int?[]).ToEnumerable()));
+            Assert.AreEqual(typeof(char), TypeExtensions.GetElementType(typeof(string).ToEnumerable()));
+            Assert.AreEqual(typeof(string), TypeExtensions.GetElementType(typeof(string[]).ToEnumerable()));
+            Assert.AreEqual(typeof(object), TypeExtensions.GetElementType(typeof(IEnumerable).ToEnumerable()));
+            Assert.AreEqual(typeof(int), TypeExtensions.GetElementType(typeof(IEnumerable<int>).ToEnumerable()));
+            Assert.AreEqual(typeof(int?), TypeExtensions.GetElementType(typeof(IEnumerable<int?>).ToEnumerable()));
 
-            Assert.AreEqual(null, typeof(int).GetCollectionElementType());
+            Assert.AreEqual(null, TypeExtensions.GetElementType(typeof(int)));
 
         }
 
@@ -92,24 +92,6 @@ namespace Levolution.Core.UnitTest
             Assert.IsFalse(typeof(object).IsNullable());
             Assert.IsFalse(typeof(IEnumerable).IsNullable());
         }
-
-        [TestMethod]
-        public void IsPureTypeTest()
-        {
-            Assert.IsTrue(typeof(int).IsPureType());
-            Assert.IsTrue(typeof(DateTime).IsPureType());
-            Assert.IsTrue(typeof(string).IsPureType());
-            Assert.IsTrue(typeof(object).IsPureType());
-            Assert.IsTrue(typeof(IEnumerable).IsPureType());
-            Assert.IsTrue(typeof(Action).IsPureType());
-
-            Assert.IsFalse(typeof(int?).IsPureType());
-            Assert.IsFalse(typeof(int[]).IsPureType());
-            Assert.IsFalse(typeof(IEnumerable<>).IsPureType());
-            Assert.IsFalse(typeof(IEnumerable<int>).IsPureType());
-            Assert.IsFalse(typeof(Action<int>).IsPureType());
-        }
-
 
         [TestMethod]
         public void IsIntegerTest()
@@ -157,25 +139,5 @@ namespace Levolution.Core.UnitTest
             Assert.IsFalse(typeof(int?).IsNumber());
             Assert.IsFalse(typeof(int[]).IsNumber());
         }
-
-#if !Net35
-
-        interface IA { }
-        interface IB { }
-
-        class A : IA { };
-        class B : A, IB { }
-
-        [TestMethod]
-        public void GetAllImplementedInterfacesTest()
-        {
-            var resultA = typeof(A).GetAllImplementedInterfaces();
-            var resultB = typeof(B).GetAllImplementedInterfaces();
-
-            Assert.IsTrue(resultA.Contains(typeof(IA)));
-            Assert.IsTrue(resultB.Contains(typeof(IA)) && resultB.Contains(typeof(IB)));
-
-        }
-#endif
     }
 }

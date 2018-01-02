@@ -52,7 +52,7 @@ namespace Levolution.Core.Types
         /// <summary>
         /// 
         /// </summary>
-        public static IEnumerable<Type> Numbers { get; } = Integers.Concat(FloatingPoints).Concat(new Type[] { Decimal });
+        public static IEnumerable<Type> Numbers { get; } = Integers.Concat(FloatingPoints).Concat(new Type[] { Decimal }).ToArray();
 
         /// <summary>
         /// 
